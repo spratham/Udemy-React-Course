@@ -32,14 +32,18 @@ const ExpenseForm = () => {
   };
 
   const submitHandler = (event) => {
-    event.preventDefault();
+    event.preventDefault(); // to not let reload the page (pre-built js fucntion)
 
     const expenseData = {
       title: enteredTitle,
       amount: enteredAmount,
-      date: new Date(enteredDate),
+      // date: new Date(enteredDate),
+      date: enteredDate,
     };
     console.log(expenseData);
+    setEnteredDate(""); //  Two-way binding-
+    setEnteredTitle(""); // (to clear the input field after
+    setEnteredAmount(""); //  filling the and submiting the details)
   };
 
   return (
