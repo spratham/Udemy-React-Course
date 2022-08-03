@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./ExpenseForm.css";
-const ExpenseForm = () => {
+const ExpenseForm = (props) => {
   const [enteredTitle, setEnteredTitle] = useState("");
   const [enteredAmount, setEnteredAmount] = useState(""); // Using multiple states
   const [enteredDate, setEnteredDate] = useState("");
@@ -11,7 +11,7 @@ const ExpenseForm = () => {
   // });
 
   const titleChangeHandler = (event) => {
-    setEnteredTitle(event.target.value);
+    setEnteredTitle(event.target.value); // used to save the entered value in the input field
     // setUserInput((prevState) => {
     //   return { ...prevState, setEnteredTitle: event.target.value };  // when state depends on prev state we use this function
     // });
@@ -37,10 +37,11 @@ const ExpenseForm = () => {
     const expenseData = {
       title: enteredTitle,
       amount: enteredAmount,
-      // date: new Date(enteredDate),
-      date: enteredDate,
+      date: new Date(enteredDate),
+      // date: enteredDate,
     };
-    console.log(expenseData);
+    // console.log(expenseData);
+    props.onSaveExpenseData(expenseData);
     setEnteredDate(""); //  Two-way binding-
     setEnteredTitle(""); // (to clear the input field after
     setEnteredAmount(""); //  filling the and submiting the details)
